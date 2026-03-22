@@ -1,0 +1,103 @@
+---
+const categories = [
+  {
+    name: 'Languages',
+    skills: ['Ruby', 'Go', 'Python', 'Bash', 'Java', 'Bash'],
+  },
+  {
+    name: 'Backend & APIs',
+    skills: ['REST', 'Rails', 'Postgres', 'OpenAPI', 'Swagger'],
+  },
+  {
+    name: 'Cloud & DevOps',
+    skills: ['AWS', 'Docker/Podman', 'Kubernetes', 'Jenkins', 'Terraform'],
+  },
+  {
+    name: 'Security',
+    skills: ['API Security', 'RBAC', 'API Security', 'Static Analysis', 'Zero Trust'],
+  },
+];
+---
+
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Expertise</p>
+      <h2 class="section-title">Skills & Technologies</h2>
+      <p class="section-desc">
+        The tools and technologies I reach for most.
+      </p>
+    </div>
+
+    <div class="skills-grid">
+      {categories.map(({ name, skills }) => (
+        <div class="skill-category">
+          <h3 class="skill-category-name">{name}</h3>
+          <div class="skill-pills">
+            {skills.map(skill => (
+              <span class="skill-pill">{skill}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-header { margin-bottom: 3rem; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-category {
+    background-color: var(--clr-bg-alt);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+
+  .skill-category-name {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--clr-text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3125rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    background-color: var(--clr-bg);
+    color: var(--clr-text-secondary);
+    border: 1px solid var(--clr-border);
+    transition: border-color 0.15s, color 0.15s, background-color 0.15s;
+    cursor: default;
+  }
+  .skill-pill:hover {
+    border-color: var(--clr-accent);
+    color: var(--clr-accent-dark);
+    background-color: var(--clr-accent-light);
+  }
+
+  @media (max-width: 900px) {
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>

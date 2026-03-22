@@ -1,0 +1,161 @@
+/* ================================================
+   Design Tokens
+   ================================================ */
+:root {
+  --clr-bg: #ffffff;
+  --clr-bg-alt: #f8fafc;
+  --clr-text: #0f172a;
+  --clr-text-secondary: #475569;
+  --clr-text-muted: #94a3b8;
+  --clr-accent: #2563eb;
+  --clr-accent-dark: #1d4ed8;
+  --clr-accent-light: #eff6ff;
+  --clr-border: #e2e8f0;
+
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  --max-w: 1100px;
+  --nav-height: 72px;
+}
+
+/* ================================================
+   Reset
+   ================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, video { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { cursor: pointer; border: none; background: none; font: inherit; }
+svg { display: block; flex-shrink: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ================================================
+   Layout Utilities
+   ================================================ */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section--alt {
+  background-color: var(--clr-bg-alt);
+}
+
+/* ================================================
+   Typography Utilities
+   ================================================ */
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.875rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.section-desc {
+  margin-top: 1rem;
+  font-size: 1.0625rem;
+  color: var(--clr-text-secondary);
+  max-width: 620px;
+  line-height: 1.75;
+}
+
+/* ================================================
+   Buttons
+   ================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6875rem 1.375rem;
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s,
+    transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--clr-accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: var(--clr-accent-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--clr-text);
+  border: 1.5px solid var(--clr-border);
+}
+.btn-secondary:hover {
+  border-color: var(--clr-accent);
+  color: var(--clr-accent);
+  transform: translateY(-1px);
+}
+
+/* ================================================
+   Tags / Chips
+   ================================================ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: var(--clr-accent-light);
+  color: var(--clr-accent-dark);
+  border: 1px solid #bfdbfe;
+}

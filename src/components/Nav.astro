@@ -1,0 +1,175 @@
+---
+const links = [
+  { label: 'About',    href: '#about' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Skills',   href: '#skills' },
+  { label: 'Contact',  href: '#contact' },
+];
+---
+
+<header class="nav" id="site-nav">
+  <div class="container nav-inner">
+    <a href="#home" class="nav-logo">Ellis Wright</a>
+
+    <nav class="nav-menu" id="nav-menu" aria-label="Primary navigation">
+      {links.map(({ label, href }) => (
+        <a href={href} class="nav-link">{label}</a>
+      ))}
+      <!-- Hide the resume link until I get around to updating/inputting it -->
+      <a href="/resume.pdf" download class="btn btn-primary nav-resume-btn" style="visibility: hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Resume
+      </a>
+    </nav>
+
+    <button class="nav-hamburger" id="nav-hamburger"
+      aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const nav       = document.getElementById('site-nav')!;
+  const menu      = document.getElementById('nav-menu')!;
+  const hamburger = document.getElementById('nav-hamburger')!;
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('nav--scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('is-open');
+    hamburger.classList.toggle('is-open', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('is-open');
+      hamburger.classList.remove('is-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--clr-bg);
+    border-bottom: 1px solid var(--clr-border);
+    transition: box-shadow 0.2s;
+  }
+  .nav--scrolled {
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-height);
+  }
+
+  .nav-logo {
+    font-weight: 700;
+    font-size: 1.0625rem;
+    color: var(--clr-text);
+    letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+  .nav-logo:hover { color: var(--clr-accent); }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--clr-text-secondary);
+    position: relative;
+    transition: color 0.15s;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--clr-accent);
+    border-radius: 2px;
+    transition: width 0.2s ease;
+  }
+  .nav-link:hover { color: var(--clr-text); }
+  .nav-link:hover::after { width: 100%; }
+
+  .nav-resume-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  /* Hamburger button */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block;
+    height: 2px;
+    background-color: var(--clr-text);
+    border-radius: 2px;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    transform-origin: center;
+  }
+  .nav-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .nav-hamburger { display: flex; }
+
+    .nav-menu {
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      background-color: var(--clr-bg);
+      border-bottom: 1px solid var(--clr-border);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.25rem 1.5rem 1.5rem;
+      gap: 1rem;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-8px);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.22s ease, opacity 0.22s ease, visibility 0.22s;
+    }
+    .nav-menu.is-open {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    .nav-resume-btn { margin-top: 0.25rem; }
+  }
+</style>
