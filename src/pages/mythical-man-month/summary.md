@@ -38,3 +38,38 @@ in order to understand which parts of the system need to be generalized. You can
 to an agent, but it will never be the full picture and engineer has in their head (not to mention all the
 context in your PM/QA/Architects heads as well that get's transmitted to you with regular conversations about
 the product).
+
+## Chapter 2: The Mythical Man-Month
+
+In the second chapter of his book Brooks dives into one of the most difficult and enduring problems in the
+field of software development, project estimating. I think for me what struck me about this chapter in particular is the
+degree his points in this chapter are still relevant to this day. Almost everything in "The Mythical Man-Month" is still
+relevant to this day (with some minor caveats) but the issues in this chapter have continued to plague industry professionals
+to an exasperating degree. Brooks approaches the problem from two different angles, the initial project estimate given as a
+ballpark before starting work, and the adjustments an organization makes once the initial estimate inevitably goes awry.
+
+Brooks takes a true "social" perspective in this chapter, aknowledging the interpersonal issues that cause estimates to drag,
+and time to completion to increase as you add more collaborators. Who among us hasn't seen a project drag on for longer than required
+due to friction between co-workers. This has only expanded even more as teams have spread across time zones and countries. In the
+worst cases one may find themselves working cross time-zone, country, and team all at the same time. Coordinating software between
+two teams in separate countries is an especially daunting task that adds considerable time demands for cross team communication.
+Not only does one need to work on the shared interface but also transmit assumptions "obvious" to one team from their work in a
+given technical ecosystem that the other may not be aware of. The cost of finding, then
+communicating these assumptions is an extremely cognitively demanding task.
+
+One thing that has changed since the release of this book is the ratio's Brooks provides for how much each sub-task of a software
+project will take. Planning (1/3), coding (1/6), component/early system test (1/4), systems test (1/4). Modern testing frameworks
+and methodologies have certainly lowered the burden of component and early systems tests by putting them earlier in the development
+process and giving easier avenues for writing reusable test suites. I would wager this lowers the burden of component testing to about
+equal in effort to the actual coding task with more time being spent on planning and systems tests. The introduction of LLM's has also
+certainly changed this ratio. Currently it looks as though LLMs have decreased the amount of time requried to produce any code (test or
+otherwise) and increased planning. However, the infantility of these new tools would indicate that this ratio is naive and will change
+as our understanding of their use changes.
+
+The second angle Brooks takes in this chapter addresses when during development of a project the estimate is found to be off. He rightly
+points out that the instinct is often to throw more man power at the problem. However this comes with the (now obvious) issue of bringing
+the new workers up to speed. Additionally they represent a further complication of the dynamic of the team, new members will now have
+their opinions/ideas on the project shared. Which while from an engineering perspective this may create a better product, will also slow
+the project down even more. This is Brooks previous point that more workers tends to increase the total time a project takes at a certain point.
+This is something that modern teams still fall victim to in the modern day. One of the things I had to learn early on in my career is though
+an offer to add more workers to a project may sound enticing, it should be carefully considered and planned for before accepting.
